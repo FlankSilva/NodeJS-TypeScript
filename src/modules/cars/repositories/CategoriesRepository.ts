@@ -8,8 +8,22 @@ interface ICreateCategoryDTO {
 export class CategoriesRepository {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoriesRepository;
+
+  // Deixamos nosso contrutor como private
+  private constructor() {
     this.categories = [];
+  }
+
+  // Criamos um metodo publico, para lidar com a criação da instancia
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      // Caso não exista a instancia ele cria
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+
+    // Caso contrario ele retorna a propria instancia
+    return CategoriesRepository.INSTANCE;
   }
 
   create({ name, description }: ICreateCategoryDTO): void {

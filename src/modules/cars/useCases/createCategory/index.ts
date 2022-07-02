@@ -2,7 +2,8 @@ import { CategoriesRepository } from "../../repositories/CategoriesRepository";
 import { CreateCategoryController } from "./CreateCategoryController";
 import { CreateCateroryUseCase } from "./CreateCateroryUseCase";
 
-const categoriesRepository = new CategoriesRepository();
+// Removemos o new e chamamos o metodo diretamente
+const categoriesRepository = CategoriesRepository.getInstance();
 
 const createCategoryUseCase = new CreateCateroryUseCase(categoriesRepository);
 
